@@ -1,8 +1,14 @@
 <?php
 
+// URL: /api/create/<APIId>/<table>?field1=234&field2=abcd
+// URL: /api/create/A12/155?field1=234&field2=abcd
+
 $params = $_REQUEST;
 
 list($apid,$table) = getURLParts();
+
+$apid = mysql_real_escape_string($apid);
+$table = mysql_real_escape_string($table);
 
 //$apid = "A12";
 //$table = "155";
@@ -26,7 +32,7 @@ if (false === $stmt){
 //$stmt->bind_param("ssss", $name, $username, $password, $apikey);
 
 //Executing the statment
-$result = $stmt->execute() || die(mysqli_error());
+$result = $stmt->execute();
 
 //Closing the statment
 $stmt->close();
