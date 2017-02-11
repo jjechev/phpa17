@@ -8,7 +8,7 @@ class Router
     private static $module;
     private static $file;
 
-    public function init()
+    public static function init()
     {
         self::getURN();
         self::getControllerAndMethod();

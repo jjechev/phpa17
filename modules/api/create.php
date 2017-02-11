@@ -5,23 +5,31 @@
 
 $params = $_REQUEST;
 
-list($apid,$table) = getURLParts();
+list($apid, $table) = getURLParts();
 
-$apid = mysql_real_escape_string($apid);
-$table = mysql_real_escape_string($table);
+$apid = intval($apid);
+$table = intval($table);
 
-//$apid = "A12";
-//$table = "155";
-
+$placeholder = [];
+foreach ($params as $key => $param) {
+    $placeholder[] = ':' . $key;
+}
 
 $columns = implode(", ", array_keys($params));
-$escaped_values = array_map('mysql_real_escape_string', array_values($params));
-$placeholders =  substr(str_repeat('?,', count($params)),-1);
-$values = "'".implode("', '", $escaped_values)."'";
-$sql = "INSERT INTO `table_" . $apid . "_" . $table . "` ($columns) VALUES ($values)";
+$placeholders = implode(", ", $placeholder);
+//$placeholders =  substr(str_repeat('?,', count($params)),0,-1);
+//$values = "'".implode("', '", $escaped_values)."'";
+$sql = "INSERT INTO `table_" . $apid . "_" . $table . "` ($columns) VALUES ($placeholders)";
+
+$db = PDOMySQL::getInstance();
+
+$db->prepare($sql, $params)->execute();
+
+print "{true}";
+
+/**
 
 //Crating an statement
-//$stmt = $this->con->prepare("INSERT INTO students(".$columns.") values(?, ?, ?, ?)");
 $stmt = db()->prepare($sql);
 
 if (false === $stmt){
@@ -29,7 +37,6 @@ if (false === $stmt){
 }
 
 //Binding the parameters
-//$stmt->bind_param("ssss", $name, $username, $password, $apikey);
 
 //Executing the statment
 $result = $stmt->execute();
@@ -46,3 +53,6 @@ if ($result) {
     echo "false";
     var_dump( db()->errors);
 }
+ * 
+ * /*
+ */

@@ -7,11 +7,19 @@ $params = $_REQUEST;
 
 list($apid, $table) = getURLParts();
 
-$apid = mysql_real_escape_string($apid);
-$table = mysql_real_escape_string($table);
+$apid = intval($apid);
+$table = intval($table);
 
 
 $sql = "SELECT * FROM `table_" . $apid . "_" . $table."`";
+
+
+$db = PDOMySQL::getInstance();
+
+$data = $db->prepare($sql)->execute()->fetchAllAssoc();
+
+echo json_encode($data);
+/*
 
 $result = db()->query($sql);
 
