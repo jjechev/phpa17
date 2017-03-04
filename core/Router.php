@@ -55,7 +55,7 @@ class Router
         $module = self::$module;
         $filename = self::$file;
 
-        $file = '../modules/' . $module . '/' . $filename . '.php';
+        $file = './modules/' . $module . '/' . $filename . '.php';
 
         if (file_exists($file)) {
             require $file;

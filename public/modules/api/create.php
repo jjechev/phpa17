@@ -26,33 +26,3 @@ $db = PDOMySQL::getInstance();
 $db->prepare($sql, $params)->execute();
 
 print "{true}";
-
-/**
-
-//Crating an statement
-$stmt = db()->prepare($sql);
-
-if (false === $stmt){
-    die(htmlspecialchars($stmt->error));
-}
-
-//Binding the parameters
-
-//Executing the statment
-$result = $stmt->execute();
-
-//Closing the statment
-$stmt->close();
-
-//If statment executed successfully
-if ($result) {
-    //Returning true means query created successfully
-    echo "true";
-} else {
-    //Returning false means query failed to create 
-    echo "false";
-    var_dump( db()->errors);
-}
- * 
- * /*
- */

@@ -19,20 +19,4 @@ $db = PDOMySQL::getInstance();
 $data = $db->prepare($sql)->execute()->fetchAllAssoc();
 
 echo json_encode($data);
-/*
 
-$result = db()->query($sql);
-
-if (!$result) {
-  printf("Query failed: %s\n", db()->error);
-  exit;
-}  
-
-$row = array();
-while($row = $result->fetch_assoc()) {
-  $rows[]=$row;
-}
-
-$result->close();
-
-echo json_encode($rows);
