@@ -11,7 +11,7 @@ $apid = intval($apid);
 $table = intval($table);
 
 
-$sql = "SELECT * FROM `table_" . $apid . "_" . $table."`";
+$sql = "SELECT * FROM `table_" . $apid . "_list_" . $table."`";
 
 
 $db = PDOMySQL::getInstance();

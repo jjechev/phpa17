@@ -19,7 +19,7 @@ $columns = implode(", ", array_keys($params));
 $placeholders = implode(", ", $placeholder);
 //$placeholders =  substr(str_repeat('?,', count($params)),0,-1);
 //$values = "'".implode("', '", $escaped_values)."'";
-$sql = "INSERT INTO `table_" . $apid . "_" . $table . "` ($columns) VALUES ($placeholders)";
+$sql = "INSERT INTO `table_" . $apid . "_list_" . $table . "` ($columns) VALUES ($placeholders)";
 
 $db = PDOMySQL::getInstance();
 

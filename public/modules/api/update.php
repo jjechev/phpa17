@@ -10,7 +10,7 @@ $apid = intval($apid);
 $resource = intval($resource);
 $id = intval($id);
 
-$table = "table_" . $apid . "_" . $resource;
+$table = "table_" . $apid . "_list_" . $resource;
     
 $query = "UPDATE `$table` SET ";
 
